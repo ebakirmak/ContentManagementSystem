@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IcerikYonetimModelStoreContainer" CdmEntityContainer="IcerikYonetimEntities">
+    <EntitySetMapping Name="TblAdmin">
+      <EntityTypeMapping TypeName="IcerikYonetimModel.TblAdmin">
+        <MappingFragment StoreEntitySet="TblAdmin">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblBanner">
+      <EntityTypeMapping TypeName="IcerikYonetimModel.TblBanner">
+        <MappingFragment StoreEntitySet="TblBanner">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ResimYolu" ColumnName="ResimYolu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblMenu">
+      <EntityTypeMapping TypeName="IcerikYonetimModel.TblMenu">
+        <MappingFragment StoreEntitySet="TblMenu">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="KonumID" ColumnName="KonumID" />
+          <ScalarProperty Name="KonumTipi" ColumnName="KonumTipi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblPage">
+      <EntityTypeMapping TypeName="IcerikYonetimModel.TblPage">
+        <MappingFragment StoreEntitySet="TblPage">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+          <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
+          <ScalarProperty Name="BannerID" ColumnName="BannerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblSlider">
+      <EntityTypeMapping TypeName="IcerikYonetimModel.TblSlider">
+        <MappingFragment StoreEntitySet="TblSlider">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="ResimYolu" ColumnName="ResimYolu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblUrun">
+      <EntityTypeMapping TypeName="IcerikYonetimModel.TblUrun">
+        <MappingFragment StoreEntitySet="TblUrun">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblUrunResim">
+      <EntityTypeMapping TypeName="IcerikYonetimModel.TblUrunResim">
+        <MappingFragment StoreEntitySet="TblUrunResim">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+          <ScalarProperty Name="ResimYolu" ColumnName="ResimYolu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

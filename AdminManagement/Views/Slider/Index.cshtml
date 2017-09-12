@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AdminYonetim.Models.DataViewModel.SliderViewModel>
+
+@{
+    ViewBag.Title = "Slider Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+  
+    <div class="divEkle" >
+        <a href="@Url.Action("SliderAdd", "Slider")"><i class="fa fa-plus-circle fa-2x"></i><div id="idEkle">Slider Ekle</div></a>
+    </div>
+</p>
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Adi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Aciklama)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Adi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Aciklama)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Düzenle", "SliderEdit", new { sliderID = item.ID }) |
+                            @Html.ActionLink("Detaylar", "SliderDetails", new { sliderID = item.ID }) |
+                            @Html.ActionLink("Sil", "SliderDelete", new { sliderID = item.ID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+        </div>
+</div>

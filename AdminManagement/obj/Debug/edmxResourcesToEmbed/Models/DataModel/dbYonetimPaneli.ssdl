@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YonetimPaneliModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblAdmin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Yetki" Type="int" />
+  </EntityType>
+  <EntityType Name="tblBanner">
+    <Key>
+      <PropertyRef Name="BannerID" />
+    </Key>
+    <Property Name="BannerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BannerResimPath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblExcel">
+    <Key>
+      <PropertyRef Name="ExcelID" />
+    </Key>
+    <Property Name="ExcelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DosyaPath" Type="ntext" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'C:\PROGRAM FILES\MICROSOFT SQL SERVER\MSSQL12.SQLEXPRESS\MSSQL\DATA\YONETIMPANELI.MDF.dbo.tblIletisim' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tblIletisim">
+          <Property Name="IletisimID" Type="int" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="IletisimMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mesaj" Type="nvarchar(max)" />
+        </EntityType>-->
+  <EntityType Name="tblMarka">
+    <Key>
+      <PropertyRef Name="MarkaID" />
+    </Key>
+    <Property Name="MarkaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MarkaKod" Type="nchar" MaxLength="10" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+    <Property Name="MarkaAdi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblMenu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuAdi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblResim">
+    <Key>
+      <PropertyRef Name="ResimID" />
+    </Key>
+    <Property Name="ResimID" Type="int" Nullable="false" />
+    <Property Name="ResimPath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblSatici">
+    <Key>
+      <PropertyRef Name="SaticiID" />
+    </Key>
+    <Property Name="SaticiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaticiAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="SaticiKodu" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SaticiAdres" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+    <Property Name="SaticiLink" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblSayfa">
+    <Key>
+      <PropertyRef Name="SayfaID" />
+    </Key>
+    <Property Name="SayfaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SayfaBaslik" Type="nvarchar" MaxLength="50" />
+    <Property Name="BannerID" Type="int" />
+    <Property Name="MenuID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblSepet">
+    <Key>
+      <PropertyRef Name="SepetID" />
+    </Key>
+    <Property Name="SepetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunID" Type="int" />
+    <Property Name="SepetKodu" Type="int" />
+    <Property Name="UyeID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblSiteAyar">
+    <Key>
+      <PropertyRef Name="SiteAyarID" />
+    </Key>
+    <Property Name="SiteAyarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiteLink" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirmaAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="SiteBaslik" Type="nvarchar" MaxLength="50" />
+    <Property Name="MetaAcikla" Type="nvarchar" MaxLength="50" />
+    <Property Name="MetaKelime" Type="nvarchar" MaxLength="100" />
+    <Property Name="KucukResimBoyut" Type="nchar" MaxLength="10" />
+    <Property Name="BuyukResimBoyut" Type="nchar" MaxLength="10" />
+    <Property Name="BannerResimBoyut" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tblSlide">
+    <Key>
+      <PropertyRef Name="SlideID" />
+    </Key>
+    <Property Name="SlideID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ResimID" Type="int" />
+    <Property Name="SlideAciklama" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblUrun">
+    <Key>
+      <PropertyRef Name="UrunID" />
+    </Key>
+    <Property Name="UrunID" Type="int" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Kod" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fiyat" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="MarkaID" Type="int" />
+    <Property Name="ExcelID" Type="int" />
+    <Property Name="SaticiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ResimID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblUye">
+    <Key>
+      <PropertyRef Name="UyeID" />
+    </Key>
+    <Property Name="UyeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UyeAd" Type="nvarchar" MaxLength="50" />
+    <Property Name="UyeSifre" Type="nvarchar" MaxLength="50" />
+    <Property Name="UyeMail" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Sayfa_Banner">
+    <End Role="tblBanner" Type="Self.tblBanner" Multiplicity="0..1" />
+    <End Role="tblSayfa" Type="Self.tblSayfa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBanner">
+        <PropertyRef Name="BannerID" />
+      </Principal>
+      <Dependent Role="tblSayfa">
+        <PropertyRef Name="BannerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sayfa_Kategori">
+    <End Role="tblMenu" Type="Self.tblMenu" Multiplicity="0..1" />
+    <End Role="tblSayfa" Type="Self.tblSayfa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMenu">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="tblSayfa">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSepet_tblUrun">
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="0..1" />
+    <End Role="tblSepet" Type="Self.tblSepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUrun">
+        <PropertyRef Name="UrunID" />
+      </Principal>
+      <Dependent Role="tblSepet">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSepet_tblUye">
+    <End Role="tblUye" Type="Self.tblUye" Multiplicity="0..1" />
+    <End Role="tblSepet" Type="Self.tblSepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUye">
+        <PropertyRef Name="UyeID" />
+      </Principal>
+      <Dependent Role="tblSepet">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSlide_tblResim">
+    <End Role="tblResim" Type="Self.tblResim" Multiplicity="0..1" />
+    <End Role="tblSlide" Type="Self.tblSlide" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblResim">
+        <PropertyRef Name="ResimID" />
+      </Principal>
+      <Dependent Role="tblSlide">
+        <PropertyRef Name="ResimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUrun_tblSatici">
+    <End Role="tblSatici" Type="Self.tblSatici" Multiplicity="1" />
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSatici">
+        <PropertyRef Name="SaticiID" />
+      </Principal>
+      <Dependent Role="tblUrun">
+        <PropertyRef Name="SaticiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_Exel">
+    <End Role="tblExcel" Type="Self.tblExcel" Multiplicity="0..1" />
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblExcel">
+        <PropertyRef Name="ExcelID" />
+      </Principal>
+      <Dependent Role="tblUrun">
+        <PropertyRef Name="ExcelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_Marka">
+    <End Role="tblMarka" Type="Self.tblMarka" Multiplicity="0..1" />
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMarka">
+        <PropertyRef Name="MarkaID" />
+      </Principal>
+      <Dependent Role="tblUrun">
+        <PropertyRef Name="MarkaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_tblResim">
+    <End Role="tblResim" Type="Self.tblResim" Multiplicity="0..1" />
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblResim">
+        <PropertyRef Name="ResimID" />
+      </Principal>
+      <Dependent Role="tblUrun">
+        <PropertyRef Name="ResimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="YonetimPaneliModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAdmin" EntityType="Self.tblAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBanner" EntityType="Self.tblBanner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblExcel" EntityType="Self.tblExcel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblMarka" EntityType="Self.tblMarka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblMenu" EntityType="Self.tblMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblResim" EntityType="Self.tblResim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSatici" EntityType="Self.tblSatici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSayfa" EntityType="Self.tblSayfa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSepet" EntityType="Self.tblSepet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSiteAyar" EntityType="Self.tblSiteAyar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSlide" EntityType="Self.tblSlide" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUrun" EntityType="Self.tblUrun" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUye" EntityType="Self.tblUye" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Sayfa_Banner" Association="Self.FK_Sayfa_Banner">
+      <End Role="tblBanner" EntitySet="tblBanner" />
+      <End Role="tblSayfa" EntitySet="tblSayfa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sayfa_Kategori" Association="Self.FK_Sayfa_Kategori">
+      <End Role="tblMenu" EntitySet="tblMenu" />
+      <End Role="tblSayfa" EntitySet="tblSayfa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSepet_tblUrun" Association="Self.FK_tblSepet_tblUrun">
+      <End Role="tblUrun" EntitySet="tblUrun" />
+      <End Role="tblSepet" EntitySet="tblSepet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSepet_tblUye" Association="Self.FK_tblSepet_tblUye">
+      <End Role="tblUye" EntitySet="tblUye" />
+      <End Role="tblSepet" EntitySet="tblSepet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSlide_tblResim" Association="Self.FK_tblSlide_tblResim">
+      <End Role="tblResim" EntitySet="tblResim" />
+      <End Role="tblSlide" EntitySet="tblSlide" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUrun_tblSatici" Association="Self.FK_tblUrun_tblSatici">
+      <End Role="tblSatici" EntitySet="tblSatici" />
+      <End Role="tblUrun" EntitySet="tblUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_Exel" Association="Self.FK_Urun_Exel">
+      <End Role="tblExcel" EntitySet="tblExcel" />
+      <End Role="tblUrun" EntitySet="tblUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_Marka" Association="Self.FK_Urun_Marka">
+      <End Role="tblMarka" EntitySet="tblMarka" />
+      <End Role="tblUrun" EntitySet="tblUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_tblResim" Association="Self.FK_Urun_tblResim">
+      <End Role="tblResim" EntitySet="tblResim" />
+      <End Role="tblUrun" EntitySet="tblUrun" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

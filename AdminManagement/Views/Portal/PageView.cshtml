@@ -1,0 +1,26 @@
+﻿@model AdminYonetim.Models.DataViewModel.PageViewModel
+
+@{
+    ViewBag.Title = "PageView";
+    ViewBag.MetaKeywords = Model.MetaKeyword;
+    ViewBag.MetaDescription = Model.MetaDescription;
+    Layout = "~/Views/Shared/_PLayout.cshtml";
+}
+
+<!--Bootsrap nerede olduğunu gösteren zavazingo-->
+<div class="col-md-12">
+    <ol class="breadcrumb">
+
+        <li><a href="#">Deneme</a></li>
+        <li><a href="#">Deneme</a></li>
+        <li class="active">@Html.DisplayFor(model => model.Baslik)</li>
+    </ol>
+</div>
+    
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">@Model.Baslik<br />@Model.Icerik</div>
+        <div class="col-md-2"></div>
+        
+    </div>
+</div>

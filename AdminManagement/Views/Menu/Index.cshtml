@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AdminYonetim.Models.DataViewModel.MenuViewModel>
+
+@{
+    ViewBag.Title = "Menu Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="divEkle">
+    <a href="@Url.Action("MenuAdd", "Menu")"><i class="fa fa-plus-circle fa-2x"></i><div id="idEkle">Menu Ekle</div></a>
+</div>
+
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Adi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KonumTipi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KonumID)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr class="even gradeX">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Adi)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KonumTipi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KonumID)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Düzenle", "MenuEdit", new { MenuID = item.ID }) |
+                            @Html.ActionLink("Detaylar", "MenuDetail", new { MenuID = item.ID }) |
+                            @Html.ActionLink("Sil", "MenuDelete", new { MenuID = item.ID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+</table>
+        </div>
+    </div>

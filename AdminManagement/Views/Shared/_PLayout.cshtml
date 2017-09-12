@@ -1,0 +1,149 @@
+﻿@using AdminYonetim.Models.DataModel;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="@ViewBag.MetaKeywords">
+    <meta name="description" content="@ViewBag.MetaDescription">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/fonts/Portal.css" rel="stylesheet" />
+    
+</head>
+    <body>
+
+       
+    
+<div class="container body-content">
+    @RenderBody()
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
+        <!--NAVBAR-->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("ANASAYFA", "Index", "Portal", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <!--MENU AYARLARI-->
+                        @using (YonetimPanelEntities db = new YonetimPanelEntities())
+                        {
+                            //DB'den KonumTipi "ANAMENU" olan nesneler seçiliyor.
+                            var AnaMenu = (from am in db.TblMenu where am.KonumTipi == "ANAMENU" select am);
+
+                            foreach (var anamenu in AnaMenu)
+                            {
+
+
+                                <!--DROPDOWN MULTİ-->
+                                <li class="dropdown">
+
+                                    @{
+                                        //Menulere ilgili sayfaları ekleniyor.
+                                        var Page = (from page in db.TblPage where page.MenuID == anamenu.ID select page).FirstOrDefault();
+                                        if (Page != null)
+                                        {
+                                            @Html.ActionLink(anamenu.Adi, "PageView", new { pageID = Page.ID })
+                                        }
+                                        else
+                                        {
+                                            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-default">@anamenu.Adi</a>
+
+                                        }
+                                    }
+
+                                    @{
+                                        //DB'den KonumTipi "ALTMENU" olanlar ve KonumID'si şuanki ANAMENU'nün id si ile aynı olanlar seçiliyor.
+                                        var altMenu = (from alt in db.TblMenu where alt.KonumTipi == "ALTMENU" && alt.KonumID == anamenu.ID select alt);
+
+                                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                            @foreach (var altmenu in altMenu)
+                                            {
+
+                                                if (altmenu.Adi != null)
+                                                {
+                                                    //DB'den KonumTipi "SONMENU" olanlar ve KonumID'si şu anki Altmenünün id si ile aynı olanlar seçiliyor.
+                                                    var sonMenu = (from son in db.TblMenu where son.KonumTipi == "SONMENU" && son.KonumID == altmenu.ID select son);
+                                                    var AltPage = (from page in db.TblPage where page.MenuID == altmenu.ID select page).FirstOrDefault();
+                                                    if (sonMenu.Count() == 0)
+                                                    {
+                                                        //Menulere ilgili sayfaları ekleniyor.
+
+                                                        if (AltPage != null)
+                                                        {
+                                                            <li>@Html.ActionLink(altmenu.Adi, "PageView", new { pageID = AltPage.ID })</li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li><a href="#">@altmenu.Adi</a></li>
+                                                        }
+
+
+                                                    }
+                                                    else
+                                                    {
+                                                        foreach (var sonmenu in sonMenu)
+                                                        {
+                                                            <li class="dropdown-submenu">
+                                                                
+                                                           @Html.ActionLink(altmenu.Adi, "PageView", new { pageID = AltPage.ID })
+                                                                <ul class="dropdown-menu">
+                                                                    @{
+                                                                        var SonPage = (from page in db.TblPage where page.MenuID == sonmenu.ID select page).FirstOrDefault();
+                                                                        if (SonPage != null)
+                                                                        {
+                                                                            <li>@Html.ActionLink(sonmenu.Adi, "PageView", new { pageID = SonPage.ID })</li>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <li><a href="#">@sonmenu.Adi</a></li>
+                                                                        }
+                                                                    }
+
+
+                                                                </ul>
+                                                            </li>
+                                                                                    }
+                                                                                }
+
+                                                                            }
+                                                                        }
+
+                                        </ul>
+
+
+
+                                    }
+                                </li>
+                                <!---->
+                                                                            }
+                                                                        }
+
+
+                        
+                        @Html.ActionLink("İLETİŞİM", "Contact", "Portal", new { area = "" }, new { @class = "navbar-brand" })
+                        
+                    </ul>
+                    <!---->
+                </div>
+            </div>
+        </div>
+        <!---->
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+    </body>
+</html>

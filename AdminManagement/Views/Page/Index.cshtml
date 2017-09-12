@@ -1,0 +1,102 @@
+﻿@model IEnumerable<AdminYonetim.Models.DataViewModel.PageViewModel>
+@using AdminYonetim.Models.DataModel
+@{
+
+    ViewBag.Title = "Sayfa Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<p>
+    @Html.ActionLink("Sayfa Ekle", "PageAdd")
+</p>
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Baslik)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Icerik)
+                    </th>
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.MenuID)
+                    </th>
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.MetaKeyword)
+                    </th>
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.MetaDescription)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Baslik)
+                        </td>
+                        <td>
+                            @{
+                                if (item.Icerik.Length > 50)
+                                {
+                                    item.Icerik = item.Icerik.Substring(0, 50) + "...";
+                                    <h6>@item.Icerik</h6>
+                                }
+                                else
+                                {
+                                    @item.Icerik
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                using (YonetimPanelEntities db = new YonetimPanelEntities())
+                                {
+                                    foreach (var menu in db.TblMenu)
+                                    {
+                                        if (item.MenuID == menu.ID)
+                                        {
+                                            @menu.Adi
+                                        }
+                                      
+                                    }
+
+                                }
+                            }
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MetaKeyword)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MetaDescription)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Düzenle", "PageEdit", new { pageID = item.ID }) |
+                            @Html.ActionLink("Detaylar", "PageDetail", new { pageID = item.ID }) |
+                            @Html.ActionLink("Sil", "PageDelete", new { pageID = item.ID })
+                        </td>
+                    </tr>
+                                }
+            <tbody>
+
+        </table>
+    </div>
+</div>

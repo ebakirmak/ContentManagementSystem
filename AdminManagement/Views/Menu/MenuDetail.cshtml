@@ -1,0 +1,54 @@
+﻿@model AdminYonetim.Models.DataViewModel.MenuViewModel
+
+@{
+    ViewBag.Title = "Menu Detayları";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt><br />
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+
+        <dd><br />
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt><br />
+            @Html.DisplayNameFor(model => model.Adi)
+        </dt>
+
+        <dd><br />
+            @Html.DisplayFor(model => model.Adi)
+        </dd>
+        <dt><br />
+            @Html.DisplayNameFor(model => model.KonumID)
+        </dt>
+
+        <dd><br />
+            @Html.DisplayFor(model => model.KonumID)
+        </dd>
+        <dt><br />
+            @Html.DisplayNameFor(model => model.KonumTipi)
+        </dt>
+
+        <dd><br />
+            @Html.DisplayFor(model => model.KonumTipi)
+        </dd>
+        <dt>
+            <br />
+        </dt>
+        <dd>
+            <br />
+            <div class="form-actions no-color">
+                <a href="@Url.Action("MenuEdit", "Menu", new { menuID=Model.ID})" class="btn btn-warning">Düzenle</a>
+            </div>
+        </dd>
+    </dl>
+</div>
+<hr />
+<div class="divEkle">
+    <a href="@Url.Action("Index", "Menu")"><i class="fa fa-arrow-circle-left fa-2x"></i><div style="font-size:18px;" id="idEkle">Listeye Dön</div></a>
+</div>
+

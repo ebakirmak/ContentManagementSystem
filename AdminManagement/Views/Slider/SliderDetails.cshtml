@@ -1,0 +1,47 @@
+﻿@model AdminYonetim.Models.DataViewModel.SliderViewModel
+
+@{
+    ViewBag.Title = "Slider Detayları";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <br />
+            @Html.DisplayNameFor(model => model.Adi)
+        </dt>
+
+        <dd>
+            <br />
+            @Html.DisplayFor(model => model.Adi)
+        </dd>
+
+        <dt>
+            <br />
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+
+        <dd>
+            <br />
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+        <dt>
+            <br />
+        </dt>
+        <dd>
+            <br />
+            <div class="form-actions no-color">
+                <a href="@Url.Action("SliderEdit", "Slider", new { sliderID=Model.ID})" class="btn btn-warning" >Düzenle</a>
+            </div>
+        </dd>
+       
+    </dl>
+</div>
+<hr />
+<div class="divEkle">
+    <a href="@Url.Action("Index", "Slider")"><i class="fa fa-arrow-circle-left fa-2x"></i><div style="font-size:18px;" id="idEkle">Listeye Dön</div></a>
+</div>
+

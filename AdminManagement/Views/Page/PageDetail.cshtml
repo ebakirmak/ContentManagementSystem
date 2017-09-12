@@ -1,0 +1,66 @@
+﻿@model AdminYonetim.Models.DataViewModel.PageViewModel
+
+@{
+    ViewBag.Title = "Sayfa Detayları";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sayfa Detayları</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Baslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Baslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Icerik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Icerik)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MenuID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MenuID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MetaKeyword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MetaKeyword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MetaDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MetaDescription)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "PageEdit", new { pageID=Model.ID }) |
+    @Html.ActionLink("Listeye Dön", "Index")
+</p>

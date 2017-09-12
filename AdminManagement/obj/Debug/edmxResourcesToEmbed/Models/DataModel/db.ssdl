@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IcerikYonetimModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TblAdmin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Yetki" Type="nchar" MaxLength="10" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TblBanner">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ResimYolu" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KonumID" Type="int" Nullable="false" />
+    <Property Name="KonumTipi" Type="nvarchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="TblPage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Baslik" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Icerik" Type="ntext" Nullable="false" />
+    <Property Name="MenuID" Type="int" Nullable="false" />
+    <Property Name="MetaDescription" Type="nvarchar" MaxLength="200" />
+    <Property Name="MetaKeyword" Type="nvarchar" MaxLength="100" />
+    <Property Name="BannerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblSlider">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="50" />
+    <Property Name="ResimYolu" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TblUrun">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="TblUrunResim">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="UrunID" Type="int" Nullable="false" />
+    <Property Name="ResimYolu" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_TblPage_TblMenu">
+    <End Role="TblMenu" Type="Self.TblMenu" Multiplicity="1" />
+    <End Role="TblPage" Type="Self.TblPage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblMenu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TblPage">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUrunResim_TblUrun">
+    <End Role="TblUrun" Type="Self.TblUrun" Multiplicity="1" />
+    <End Role="TblUrunResim" Type="Self.TblUrunResim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUrun">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TblUrunResim">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IcerikYonetimModelStoreContainer">
+    <EntitySet Name="TblAdmin" EntityType="Self.TblAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblBanner" EntityType="Self.TblBanner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblMenu" EntityType="Self.TblMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblPage" EntityType="Self.TblPage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblSlider" EntityType="Self.TblSlider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblUrun" EntityType="Self.TblUrun" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblUrunResim" EntityType="Self.TblUrunResim" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TblPage_TblMenu" Association="Self.FK_TblPage_TblMenu">
+      <End Role="TblMenu" EntitySet="TblMenu" />
+      <End Role="TblPage" EntitySet="TblPage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUrunResim_TblUrun" Association="Self.FK_TblUrunResim_TblUrun">
+      <End Role="TblUrun" EntitySet="TblUrun" />
+      <End Role="TblUrunResim" EntitySet="TblUrunResim" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

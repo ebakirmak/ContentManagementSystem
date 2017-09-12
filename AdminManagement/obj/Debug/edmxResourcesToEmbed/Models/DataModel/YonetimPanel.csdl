@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YonetimModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblAdmin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" />
+    <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Yetki" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblBanner">
+    <Key>
+      <PropertyRef Name="BannerID" />
+    </Key>
+    <Property Name="BannerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BannerResimPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblSayfa" Relationship="Self.FK_Sayfa_Banner" FromRole="tblBanner" ToRole="tblSayfa" />
+  </EntityType>
+  <EntityType Name="tblExcel">
+    <Key>
+      <PropertyRef Name="ExcelID" />
+    </Key>
+    <Property Name="ExcelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DosyaPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblUrun" Relationship="Self.FK_Urun_Exel" FromRole="tblExcel" ToRole="tblUrun" />
+  </EntityType>
+  <EntityType Name="tblMarka">
+    <Key>
+      <PropertyRef Name="MarkaID" />
+    </Key>
+    <Property Name="MarkaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MarkaKod" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MarkaAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblUrun" Relationship="Self.FK_Urun_Marka" FromRole="tblMarka" ToRole="tblUrun" />
+  </EntityType>
+  <EntityType Name="tblMenu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblSayfa" Relationship="Self.FK_Sayfa_Kategori" FromRole="tblMenu" ToRole="tblSayfa" />
+  </EntityType>
+  <EntityType Name="tblResim">
+    <Key>
+      <PropertyRef Name="ResimID" />
+    </Key>
+    <Property Name="ResimID" Type="Int32" Nullable="false" />
+    <Property Name="ResimPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblSlide" Relationship="Self.FK_tblSlide_tblResim" FromRole="tblResim" ToRole="tblSlide" />
+    <NavigationProperty Name="tblUrun" Relationship="Self.FK_Urun_tblResim" FromRole="tblResim" ToRole="tblUrun" />
+  </EntityType>
+  <EntityType Name="tblSatici">
+    <Key>
+      <PropertyRef Name="SaticiID" />
+    </Key>
+    <Property Name="SaticiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaticiAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SaticiKodu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SaticiAdres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SaticiLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblUrun" Relationship="Self.FK_tblUrun_tblSatici" FromRole="tblSatici" ToRole="tblUrun" />
+  </EntityType>
+  <EntityType Name="tblSayfa">
+    <Key>
+      <PropertyRef Name="SayfaID" />
+    </Key>
+    <Property Name="SayfaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SayfaBaslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BannerID" Type="Int32" />
+    <Property Name="MenuID" Type="Int32" />
+    <Property Name="Icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblBanner" Relationship="Self.FK_Sayfa_Banner" FromRole="tblSayfa" ToRole="tblBanner" />
+    <NavigationProperty Name="tblMenu" Relationship="Self.FK_Sayfa_Kategori" FromRole="tblSayfa" ToRole="tblMenu" />
+  </EntityType>
+  <EntityType Name="tblSepet">
+    <Key>
+      <PropertyRef Name="SepetID" />
+    </Key>
+    <Property Name="SepetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunID" Type="Int32" />
+    <Property Name="SepetKodu" Type="Int32" />
+    <Property Name="UyeID" Type="Int32" />
+    <NavigationProperty Name="tblUrun" Relationship="Self.FK_tblSepet_tblUrun" FromRole="tblSepet" ToRole="tblUrun" />
+    <NavigationProperty Name="tblUye" Relationship="Self.FK_tblSepet_tblUye" FromRole="tblSepet" ToRole="tblUye" />
+  </EntityType>
+  <EntityType Name="tblSiteAyar">
+    <Key>
+      <PropertyRef Name="SiteAyarID" />
+    </Key>
+    <Property Name="SiteAyarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiteLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirmaAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SiteBaslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MetaAcikla" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MetaKelime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="KucukResimBoyut" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="BuyukResimBoyut" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="BannerResimBoyut" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblSlide">
+    <Key>
+      <PropertyRef Name="SlideID" />
+    </Key>
+    <Property Name="SlideID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResimID" Type="Int32" />
+    <Property Name="SlideAciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblResim" Relationship="Self.FK_tblSlide_tblResim" FromRole="tblSlide" ToRole="tblResim" />
+  </EntityType>
+  <EntityType Name="tblUrun">
+    <Key>
+      <PropertyRef Name="UrunID" />
+    </Key>
+    <Property Name="UrunID" Type="Int32" Nullable="false" />
+    <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Kod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fiyat" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MarkaID" Type="Int32" />
+    <Property Name="ExcelID" Type="Int32" />
+    <Property Name="SaticiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResimID" Type="Int32" />
+    <NavigationProperty Name="tblExcel" Relationship="Self.FK_Urun_Exel" FromRole="tblUrun" ToRole="tblExcel" />
+    <NavigationProperty Name="tblMarka" Relationship="Self.FK_Urun_Marka" FromRole="tblUrun" ToRole="tblMarka" />
+    <NavigationProperty Name="tblResim" Relationship="Self.FK_Urun_tblResim" FromRole="tblUrun" ToRole="tblResim" />
+    <NavigationProperty Name="tblSatici" Relationship="Self.FK_tblUrun_tblSatici" FromRole="tblUrun" ToRole="tblSatici" />
+    <NavigationProperty Name="tblSepet" Relationship="Self.FK_tblSepet_tblUrun" FromRole="tblUrun" ToRole="tblSepet" />
+  </EntityType>
+  <EntityType Name="tblUye">
+    <Key>
+      <PropertyRef Name="UyeID" />
+    </Key>
+    <Property Name="UyeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UyeAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UyeSifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UyeMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblSepet" Relationship="Self.FK_tblSepet_tblUye" FromRole="tblUye" ToRole="tblSepet" />
+  </EntityType>
+  <Association Name="FK_Sayfa_Banner">
+    <End Role="tblBanner" Type="Self.tblBanner" Multiplicity="0..1" />
+    <End Role="tblSayfa" Type="Self.tblSayfa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBanner">
+        <PropertyRef Name="BannerID" />
+      </Principal>
+      <Dependent Role="tblSayfa">
+        <PropertyRef Name="BannerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_Exel">
+    <End Role="tblExcel" Type="Self.tblExcel" Multiplicity="0..1" />
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblExcel">
+        <PropertyRef Name="ExcelID" />
+      </Principal>
+      <Dependent Role="tblUrun">
+        <PropertyRef Name="ExcelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_Marka">
+    <End Role="tblMarka" Type="Self.tblMarka" Multiplicity="0..1" />
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMarka">
+        <PropertyRef Name="MarkaID" />
+      </Principal>
+      <Dependent Role="tblUrun">
+        <PropertyRef Name="MarkaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sayfa_Kategori">
+    <End Role="tblMenu" Type="Self.tblMenu" Multiplicity="0..1" />
+    <End Role="tblSayfa" Type="Self.tblSayfa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMenu">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="tblSayfa">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSlide_tblResim">
+    <End Role="tblResim" Type="Self.tblResim" Multiplicity="0..1" />
+    <End Role="tblSlide" Type="Self.tblSlide" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblResim">
+        <PropertyRef Name="ResimID" />
+      </Principal>
+      <Dependent Role="tblSlide">
+        <PropertyRef Name="ResimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_tblResim">
+    <End Role="tblResim" Type="Self.tblResim" Multiplicity="0..1" />
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblResim">
+        <PropertyRef Name="ResimID" />
+      </Principal>
+      <Dependent Role="tblUrun">
+        <PropertyRef Name="ResimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUrun_tblSatici">
+    <End Role="tblSatici" Type="Self.tblSatici" Multiplicity="1" />
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSatici">
+        <PropertyRef Name="SaticiID" />
+      </Principal>
+      <Dependent Role="tblUrun">
+        <PropertyRef Name="SaticiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSepet_tblUrun">
+    <End Role="tblUrun" Type="Self.tblUrun" Multiplicity="0..1" />
+    <End Role="tblSepet" Type="Self.tblSepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUrun">
+        <PropertyRef Name="UrunID" />
+      </Principal>
+      <Dependent Role="tblSepet">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSepet_tblUye">
+    <End Role="tblUye" Type="Self.tblUye" Multiplicity="0..1" />
+    <End Role="tblSepet" Type="Self.tblSepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUye">
+        <PropertyRef Name="UyeID" />
+      </Principal>
+      <Dependent Role="tblSepet">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="YonetimPanelEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="tblAdmin" EntityType="Self.tblAdmin" />
+    <EntitySet Name="tblBanner" EntityType="Self.tblBanner" />
+    <EntitySet Name="tblExcel" EntityType="Self.tblExcel" />
+    <EntitySet Name="tblMarka" EntityType="Self.tblMarka" />
+    <EntitySet Name="tblMenu" EntityType="Self.tblMenu" />
+    <EntitySet Name="tblResim" EntityType="Self.tblResim" />
+    <EntitySet Name="tblSatici" EntityType="Self.tblSatici" />
+    <EntitySet Name="tblSayfa" EntityType="Self.tblSayfa" />
+    <EntitySet Name="tblSepet" EntityType="Self.tblSepet" />
+    <EntitySet Name="tblSiteAyar" EntityType="Self.tblSiteAyar" />
+    <EntitySet Name="tblSlide" EntityType="Self.tblSlide" />
+    <EntitySet Name="tblUrun" EntityType="Self.tblUrun" />
+    <EntitySet Name="tblUye" EntityType="Self.tblUye" />
+    <AssociationSet Name="FK_Sayfa_Banner" Association="Self.FK_Sayfa_Banner">
+      <End Role="tblBanner" EntitySet="tblBanner" />
+      <End Role="tblSayfa" EntitySet="tblSayfa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_Exel" Association="Self.FK_Urun_Exel">
+      <End Role="tblExcel" EntitySet="tblExcel" />
+      <End Role="tblUrun" EntitySet="tblUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_Marka" Association="Self.FK_Urun_Marka">
+      <End Role="tblMarka" EntitySet="tblMarka" />
+      <End Role="tblUrun" EntitySet="tblUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sayfa_Kategori" Association="Self.FK_Sayfa_Kategori">
+      <End Role="tblMenu" EntitySet="tblMenu" />
+      <End Role="tblSayfa" EntitySet="tblSayfa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSlide_tblResim" Association="Self.FK_tblSlide_tblResim">
+      <End Role="tblResim" EntitySet="tblResim" />
+      <End Role="tblSlide" EntitySet="tblSlide" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_tblResim" Association="Self.FK_Urun_tblResim">
+      <End Role="tblResim" EntitySet="tblResim" />
+      <End Role="tblUrun" EntitySet="tblUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUrun_tblSatici" Association="Self.FK_tblUrun_tblSatici">
+      <End Role="tblSatici" EntitySet="tblSatici" />
+      <End Role="tblUrun" EntitySet="tblUrun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSepet_tblUrun" Association="Self.FK_tblSepet_tblUrun">
+      <End Role="tblUrun" EntitySet="tblUrun" />
+      <End Role="tblSepet" EntitySet="tblSepet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSepet_tblUye" Association="Self.FK_tblSepet_tblUye">
+      <End Role="tblUye" EntitySet="tblUye" />
+      <End Role="tblSepet" EntitySet="tblSepet" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,53 @@
+﻿@model AdminYonetim.Models.DataViewModel.MenuViewModel
+
+@{
+    ViewBag.Title = "Menu Sil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>Bu menuyu silmek istediğinizden emin misiniz?</h3>
+<div>
+    <form method="post">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt><br />
+                @Html.DisplayNameFor(model => model.ID)
+            </dt>
+
+            <dd><br />
+                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </dd>
+            <dt><br />
+                @Html.DisplayNameFor(model => model.Adi)
+            </dt>
+
+            <dd><br />
+                @Html.EditorFor(model => model.Adi, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </dd>
+
+            <dt><br />
+                @Html.DisplayNameFor(model => model.KonumID)
+            </dt>
+
+            <dd><br />
+                @Html.EditorFor(model => model.KonumID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </dd>
+          <dt>
+              <br />
+          </dt>
+            <dd><br />
+                        <input type="submit" value="Sil" class="btn btn-warning" />
+                        <h3>@ViewBag.Message</h3>
+            </dd>
+
+        </dl>
+    </form>
+    <hr />
+    
+    @{
+//listeye dön butonu
+    }
+ 
+    <div class="divEkle">
+        <a href="@Url.Action("Index", "Menu")"><i class="fa fa-arrow-circle-left fa-2x"></i><div style="font-size:18px;" id="idEkle">Listeye Dön</div></a>
+    </div>
+</div>
